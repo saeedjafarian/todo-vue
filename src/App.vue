@@ -24,15 +24,15 @@ export default {
   },
   methods: {
    async getTasks() {
-      let res = await axios.get('http://localhost:3000/tasks')
+      let res = await axios.get('http://localhost:3000/tasks');
       this.tasks = res.data;
     },
-    removeTask(id) {
-      axios.delete(`http://localhost:3000/tasks/${id}`);
+    async removeTask(id) {
+      let res = await axios.delete(`http://localhost:3000/tasks/${id}`);
       this.tasks = this.tasks.filter((value) => value.id != id);
     }
   },
-  mounted() {
+  created() {
     this.getTasks();
   },
 }
